@@ -1,16 +1,15 @@
-## Hi there 👋
+# Stev | Cybersecurity Student
 
-<!--
-**stev-droid/stev-droid** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+🎓 AITU — Astana IT University
+🔐 Web Penetration Testing
+🐍 Python scripting
 
-Here are some ideas to get you started:
+## Skills
+- Web pentesting (SSRF, SQLi, XSS)
+- Python automation
+- HTB, PortSwigger, VulnHub
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Projects
+- Packet Sniffer
+- Subdomain Enumerator
+- Archive Extractor
