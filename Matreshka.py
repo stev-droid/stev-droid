@@ -3,7 +3,7 @@ import gzip
 import bz2
 import os
 import magic
-
+import sys
 
 def extract(filename, dest_dir='./extracted'):
     os.makedirs(dest_dir, exist_ok=True)
@@ -64,5 +64,5 @@ def print_content(filename):
             print(f.read())
 
 if __name__ == '__main__':
-    file_path = input("write a path to a file:")
+    file_path = sys.arg[1]
     extract(file_path)
