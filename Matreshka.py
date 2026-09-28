@@ -36,31 +36,44 @@ def extract(filename, dest_dir='./extracted'):
         print(f"Invalid type: {file_mime}")
 
 def extract_tar(filename, dest_dir):
-    with tarfile.open(filename) as tar:
-        tar.extractall(dest_dir)  
-        return tar.getnames()     
+    try:
+        with tarfile.open(filename) as tar:
+        tar.extractall(dest_dir,filter='data')  
+        return tar.getnames()  
+    except Exception as e:
+        print(f"Error in unpacking {e}")
+        return []
 
 def extract_gzip(filename, dest_dir):
-    output_file = os.path.join(dest_dir, os.path.basename(filename)[:-3])
-    with gzip.open(filename, 'rb') as f_in:
-        with open(output_file, 'wb') as f_out:
-            f_out.write(f_in.read())
-    return [output_file]
+    try:
+        output_file = os.path.join(dest_dir, os.path.basename(filename)[:-3])
+        with gzip.open(filename, 'rb') as f_in:
+                with open(output_file, 'wb') as f_out:
+                f_out.write(f_in.read())
+                return [output_file]
+    except Exception as e:
+        print(f"Error in unpacking {e}")
+        return []
 
 def extract_bzip2(filename, dest_dir):
-    output_file = os.path.join(dest_dir, os.path.basename(filename)[:-4])
+    try:
+        output_file = os.path.join(dest_dir, os.path.basename(filename)[:-4])
     with bz2.open(filename, 'rb') as f_in:
         with open(output_file, 'wb') as f_out:
             f_out.write(f_in.read())
     return [output_file]
+    except Exception as e:
+        print(f"Error in unpacking {e}")
+        return []
 
 def print_content(filename):
-    file_mime = magic.from_file(filename, mime=True)
-    if file_mime == 'text/plain':
         print(f"\n=== The flag: {filename} ===")
         with open(filename, 'r') as f:
             print(f.read())
 
 if __name__ == '__main__':
+    if len(sys.arg) < 2:
+        print("Add parametrs")
+        sys.exit(1)
     file_path = sys.arg[1]
     extract(file_path)
