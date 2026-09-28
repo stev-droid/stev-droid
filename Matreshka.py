@@ -9,7 +9,7 @@ def extract(filename, dest_dir='./extracted'):
     os.makedirs(dest_dir, exist_ok=True)
 
     if not os.path.exists(filename):
-        return 'Файл не найден'
+        return 'file not found'
 
     file_mime = magic.from_file(filename, mime=True)
 
@@ -33,15 +33,14 @@ def extract(filename, dest_dir='./extracted'):
         print_content(filename)
 
     else:
-        print(f"Неизвестный тип: {file_mime}")
+        print(f"Invalid type: {file_mime}")
 
 def extract_tar(filename, dest_dir):
     with tarfile.open(filename) as tar:
-        tar.extractall(dest_dir)  # распаковывает все файлы в dest_dir
-        return tar.getnames()     #
+        tar.extractall(dest_dir)  
+        return tar.getnames()     
 
 def extract_gzip(filename, dest_dir):
-    # убираем .gz из названия
     output_file = os.path.join(dest_dir, os.path.basename(filename)[:-3])
     with gzip.open(filename, 'rb') as f_in:
         with open(output_file, 'wb') as f_out:
@@ -49,7 +48,6 @@ def extract_gzip(filename, dest_dir):
     return [output_file]
 
 def extract_bzip2(filename, dest_dir):
-    # убираем .bz2 из названия
     output_file = os.path.join(dest_dir, os.path.basename(filename)[:-4])
     with bz2.open(filename, 'rb') as f_in:
         with open(output_file, 'wb') as f_out:
@@ -59,7 +57,7 @@ def extract_bzip2(filename, dest_dir):
 def print_content(filename):
     file_mime = magic.from_file(filename, mime=True)
     if file_mime == 'text/plain':
-        print(f"\n=== Нашли файл: {filename} ===")
+        print(f"\n=== The flag: {filename} ===")
         with open(filename, 'r') as f:
             print(f.read())
 
